@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.gson.Gson
 import com.shatokhin.jokesaboutchaknoris.data.network.ApiICNDB
 import com.shatokhin.jokesaboutchaknoris.data.network.ICNDBInteractor
+import dagger.hilt.android.HiltAndroidApp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,7 +19,7 @@ class App : Application() {
     }
 
     lateinit var apiICNDB: ApiICNDB
-    lateinit var icndbInteractor: ICNDBInteractor // непонятно! он использует api плюс Repository содержить всего 1 метод на получение данных
+    lateinit var icndbInteractor: ICNDBInteractor
 
     override fun onCreate() {
         super.onCreate()
@@ -42,7 +43,7 @@ class App : Application() {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
-            .create(apiICNDB::class.java)
+            .create(ApiICNDB::class.java)
     }
 
     private fun initInteractor() {

@@ -7,5 +7,6 @@ data class JokeJson(
     val id: Int,
     @SerializedName("joke")
     val text: String,
-    @SerializedName("categories") // Возможна ошибка!
-    val category: List<String>) // Возможна ошибка!
+    @SerializedName("categories")
+    val category: List<String>
+    )
